@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To My Precious Friend 💖</title>
+  <link rel="icon" href="butterfly.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      animation: fadeIn 2s ease-in-out;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ffcc70;
+      animation: popIn 1s ease forwards;
+    }
+
+    .message-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 30px 0;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message-box p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .slide {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      gap: 20px;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .slide img {
+      width: 180px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide p {
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: left;
+      color: #ffecb3;
+    }
+
+    .audio-player {
+      margin-top: 40px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="butterfly-canvas"></canvas>
+
+  <div class="container">
+    <h1>To My Darling ❤️</h1>
+
+    <div class="slide">
+      <img src="your-image1.jpg" alt="Memory 1">
+      <p>You made my worst days brighter! ❤️</p>
+    </div>
+    <div class="slide">
+      <img src="your-image2.jpg" alt="Memory 2">
+      <p>Every memory with you is a treasure! 🌟</p>
+    </div>
+    <div class="slide">
+      <img src="your-image3.jpg" alt="Memory 3">
+      <p>You’re always in my heart, Deepu 💖</p>
+    </div>
+
+    <div class="message-box">
+      <p>
+        Happy Friendship Day, I just want to say <strong>THANK YOU</strong> — for the smiles, the late-night talks, the crazy laughter, and for being my rock. You've brought so much joy into my life.
+      </p>
+      <p>
+        Life gets so busy, and sometimes I forget to say these things, but you are truly one of the most important people in my life.
+      </p>
+      <p>
+        You're more than just a friend — you're my <strong>chosen family</strong>. Thank you for being there, for laughing with me, and for letting me be myself.
+      </p>
+      <p>
+        I miss you more than words can say. I think about our memories, our laughs, and the way you make the simplest moments feel special.
+      </p>
+      <p>
+        Here's to many more beautiful memories together. 💖
+      </p>
+    </div>
+
+    <div class="audio-player">
+      <audio id="bg-music" autoplay loop>
+        <source src="your-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    // Butterfly animation logic
+    const canvas = document.getElementById("butterfly-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const butterflyImg = new Image();
+    butterflyImg.src = "0f45c642-eb90-4dbc-9033-a584daa271a8.png";
+
+    const butterflies = [];
+
+    function createButterfly() {
+      butterflies.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 20,
+        speedY: Math.random() * 1.5 + 1,
+        size: Math.random() * 30 + 20
+      });
+    }
+
+    function drawButterflies() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < butterflies.length; i++) {
+        const b = butterflies[i];
+        ctx.drawImage(butterflyImg, b.x, b.y, b.size, b.size);
+        b.y -= b.speedY;
+        if (b.y + b.size < 0) butterflies.splice(i, 1);
+      }
+    }
+
+    function animate() {
+      drawButterflies();
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(createButterfly, 800);
+    animate();
+  </script>
+</body>
+</html>
